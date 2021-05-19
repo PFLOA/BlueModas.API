@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlueModas.API</name>
+    </assembly>
+    <members>
+        <member name="M:BlueModas.API.Controllers.UsersController.GetAll">
+            <summary>
+            Obtem a lista de todos os usuários do sistema.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BlueModas.API.Startup">
+            <summary>
+            Classe de entrada da aplicação Asp .Net Core
+            </summary>
+        </member>
+        <member name="M:BlueModas.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Construtor padrão.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+    </members>
+</doc>

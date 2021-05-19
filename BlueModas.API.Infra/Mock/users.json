@@ -1,0 +1,136 @@
+﻿[
+  {
+    "id": "e5c6cffa-947c-4957-bfa7-0cb55256ec84",
+    "name": "PAULO",
+    "userName": "PAULO",
+    "password": "123",
+    "email": "user1@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": null,
+    "enderecos": null
+  },
+  {
+    "id": "686b5eeb-3c87-49bf-b215-0ae4bddb5574",
+    "name": "PEDRO",
+    "userName": "PEDRO",
+    "password": "Mudar@123Senha",
+    "email": "user2@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": [
+      {
+        "id": 0,
+        "users": "string",
+        "numero": "string",
+        "tipoTelefone": 0
+      }
+    ],
+    "enderecos": [
+      {
+        "id": 0,
+        "users": "string",
+        "rua": "string",
+        "numero": "string",
+        "complemento": "string",
+        "bairro": "string",
+        "cep": "string",
+        "cidade": "string",
+        "estado": "string",
+        "observacoes": "string",
+        "tipoEndereco": 0
+      }
+    ]
+  },
+  {
+    "id": "7015712b-6f43-4afb-9e54-6bee0f48c9d3",
+    "name": "POTIRA",
+    "userName": "POTIRA",
+    "password": "Mudar@123Senha",
+    "email": "user3@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": [
+      {
+        "id": 0,
+        "users": "string",
+        "numero": "string",
+        "tipoTelefone": 0
+      }
+    ],
+    "enderecos": [
+      {
+        "id": 0,
+        "users": "string",
+        "rua": "string",
+        "numero": "string",
+        "complemento": "string",
+        "bairro": "string",
+        "cep": "string",
+        "cidade": "string",
+        "estado": "string",
+        "observacoes": "string",
+        "tipoEndereco": 0
+      }
+    ]
+  },
+  {
+    "id": "ff6e1f4f-5c50-47d3-b541-061184d076c9",
+    "name": "FRANCISCA",
+    "userName": "FRANCISCA",
+    "password": "Mudar@123Senha",
+    "email": "user4@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": [
+      {
+        "id": 0,
+        "users": "string",
+        "numero": "string",
+        "tipoTelefone": 0
+      }
+    ],
+    "enderecos": [
+      {
+        "id": 0,
+        "users": "string",
+        "rua": "string",
+        "numero": "string",
+        "complemento": "string",
+        "bairro": "string",
+        "cep": "string",
+        "cidade": "string",
+        "estado": "string",
+        "observacoes": "string",
+        "tipoEndereco": 0
+      }
+    ]
+  },
+  {
+    "id": "8260acca-6245-4373-9302-8638f96b8be7",
+    "name": "CAMILA",
+    "userName": "CAMILA",
+    "password": "Mudar@123Senha",
+    "email": "user5@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": [
+      {
+        "id": 0,
+        "users": "string",
+        "numero": "string",
+        "tipoTelefone": 0
+      }
+    ],
+    "enderecos": [
+      {
+        "id": 0,
+        "users": "string",
+        "rua": "string",
+        "numero": "string",
+        "complemento": "string",
+        "bairro": "string",
+        "cep": "string",
+        "cidade": "string",
+        "estado": "string",
+        "observacoes": "string",
+        "tipoEndereco": 0
+      }
+    ]
+  }
+]
