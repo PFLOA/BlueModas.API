@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BlueModas.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize]
     public class ProdutoController : ControllerBase
@@ -40,7 +40,7 @@ namespace BlueModas.API.Controllers
         [HttpGet("{id}")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
-        public async Task<ActionResult<Produto>> GetById(Guid id)
+        public async Task<ActionResult<Produto>> GetById(int id)
         {
             var retorno = await this.produtoRepository.GetById(id);
 
@@ -56,7 +56,7 @@ namespace BlueModas.API.Controllers
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Verifique os parâmetros passados.")]
-        public async Task<IActionResult> Update(Guid id, Produto produto)
+        public async Task<IActionResult> Update(int id, Produto produto)
         {
             var retorno = this.produtoRepository.Update(id, produto);
 
@@ -96,7 +96,7 @@ namespace BlueModas.API.Controllers
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro interno do servidor.", typeof(GeneralError))]
-        public async Task<ActionResult<Produto>> Delete(Guid id)
+        public async Task<ActionResult<Produto>> Delete(int id)
         {
             var retorno = await this.produtoRepository.Delete(id);
 

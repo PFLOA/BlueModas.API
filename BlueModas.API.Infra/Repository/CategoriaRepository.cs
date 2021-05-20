@@ -15,45 +15,45 @@ namespace BlueModas.API.Infra.Repository
     public class CategoriaRepository : ICategoriaRepository
     {
         #region [ Attributes ]
-        private readonly BlueModasDbContext applicationDbContext;
+        private readonly BlueModasDbContext blueModasDbContext;
         #endregion
 
         #region [ Constructors ]
-        public CategoriaRepository(BlueModasDbContext applicationDbContext)
+        public CategoriaRepository(BlueModasDbContext blueModasDbContext)
         {
-            this.applicationDbContext = applicationDbContext;
+            this.blueModasDbContext = blueModasDbContext;
         }
         #endregion
 
         #region [ Public Functions ]
         public async Task<Categorias> Add(Categorias Categorias)
         {
-            await this.applicationDbContext.Categorias.AddAsync(Categorias);
-            await this.applicationDbContext.SaveChangesAsync();
+            await this.blueModasDbContext.Categorias.AddAsync(Categorias);
+            await this.blueModasDbContext.SaveChangesAsync();
 
             return Categorias;
         }
         public async Task<Categorias> Delete(int id)
         {
-            var categoria = await this.applicationDbContext.Categorias.FindAsync(id);
+            var categoria = await this.blueModasDbContext.Categorias.FindAsync(id);
 
             if (categoria == null)
             {
                 return null;
             }
 
-            this.applicationDbContext.Categorias.Remove(categoria);
-            await this.applicationDbContext.SaveChangesAsync();
+            this.blueModasDbContext.Categorias.Remove(categoria);
+            await this.blueModasDbContext.SaveChangesAsync();
 
             return categoria;
         }
         public async Task<ActionResult<IEnumerable<Categorias>>> GetAll()
         {
-            return await this.applicationDbContext.Categorias.ToListAsync();
+            return await this.blueModasDbContext.Categorias.ToListAsync();
         }
         public async Task<Categorias> GetById(int id)
         {
-            var categoria = await this.applicationDbContext.Categorias.FindAsync(id);
+            var categoria = await this.blueModasDbContext.Categorias.FindAsync(id);
 
             if (categoria == null)
             {
@@ -69,11 +69,11 @@ namespace BlueModas.API.Infra.Repository
                 return RetornosEnum.UserDifferentId;
             }
 
-            this.applicationDbContext.Entry(categorias).State = EntityState.Modified;
+            this.blueModasDbContext.Entry(categorias).State = EntityState.Modified;
 
             try
             {
-                this.applicationDbContext.SaveChangesAsync();
+                this.blueModasDbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -94,7 +94,7 @@ namespace BlueModas.API.Infra.Repository
         #region [ Private Functions ]
         private bool UsersExists(int id)
         {
-            return this.applicationDbContext.Categorias.Any(e => e.Id == id);
+            return this.blueModasDbContext.Categorias.Any(e => e.Id == id);
         }
         #endregion
     }

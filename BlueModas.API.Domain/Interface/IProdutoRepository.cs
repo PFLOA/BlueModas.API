@@ -11,9 +11,9 @@ namespace BlueModas.API.Domain.Interface
     public interface IProdutoRepository
     {
         Task<ActionResult<IEnumerable<Produto>>> GetAll();
-        Task<Produto> GetById(Guid id);
-        RetornosEnum Update(Guid id, Produto produto);
+        Task<Produto> GetById(int id);
+        RetornosEnum Update(int id, Produto produto);
         Task<Produto> Add(Produto produto);
-        Task<Produto> Delete(Guid id);
+        Task<Produto> Delete(int id);
     }
 }

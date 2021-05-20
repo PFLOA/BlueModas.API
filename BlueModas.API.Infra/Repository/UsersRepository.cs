@@ -16,45 +16,45 @@ namespace BlueModas.API.Infra.Repository
     public class UsersRepository : IUsersRepository
     {
         #region [ Attributes ]
-        private readonly BlueModasDbContext applicationDbContext;
+        private readonly BlueModasDbContext blueModasDbContext;
         #endregion
 
         #region [ Constructors ]
-        public UsersRepository(BlueModasDbContext applicationDbContext)
+        public UsersRepository(BlueModasDbContext blueModasDbContext)
         {
-            this.applicationDbContext = applicationDbContext;
+            this.blueModasDbContext = blueModasDbContext;
         }
         #endregion
 
         #region [ Public Functions ]
         public async Task<Users> Add(Users users)
         {
-            await this.applicationDbContext.Users.AddAsync(users);
-            await this.applicationDbContext.SaveChangesAsync();
+            await this.blueModasDbContext.Users.AddAsync(users);
+            await this.blueModasDbContext.SaveChangesAsync();
 
             return users;
         }
         public async Task<Users> Delete(Guid id)
         {
-            var users = await this.applicationDbContext.Users.FindAsync(id);
+            var users = await this.blueModasDbContext.Users.FindAsync(id);
 
             if (users == null)
             {
                 return null;
             }
 
-            this.applicationDbContext.Users.Remove(users);
-            await this.applicationDbContext.SaveChangesAsync();
+            this.blueModasDbContext.Users.Remove(users);
+            await this.blueModasDbContext.SaveChangesAsync();
 
             return users;
         }
         public async Task<ActionResult<IEnumerable<Users>>> GetAll()
         {
-            return await this.applicationDbContext.Users.ToListAsync();
+            return await this.blueModasDbContext.Users.ToListAsync();
         }
         public async Task<Users> GetById(Guid id)
         {
-            var users = await this.applicationDbContext.Users.FindAsync(id);
+            var users = await this.blueModasDbContext.Users.FindAsync(id);
 
             if (users == null)
             {
@@ -70,11 +70,11 @@ namespace BlueModas.API.Infra.Repository
                 return RetornosEnum.UserDifferentId;
             }
 
-            this.applicationDbContext.Entry(users).State = EntityState.Modified;
+            this.blueModasDbContext.Entry(users).State = EntityState.Modified;
 
             try
             {
-                this.applicationDbContext.SaveChangesAsync();
+                this.blueModasDbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -95,7 +95,7 @@ namespace BlueModas.API.Infra.Repository
         #region [ Private Functions ]
         private bool UsersExists(Guid id)
         {
-            return this.applicationDbContext.Users.Any(e => e.Id == id);
+            return this.blueModasDbContext.Users.Any(e => e.Id == id);
         }
         #endregion
     }

@@ -1,9 +1,6 @@
 ﻿using BlueModas.API.Domain.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlueModas.API.Infra.Data.Mapping
 {
@@ -27,8 +24,6 @@ namespace BlueModas.API.Infra.Data.Mapping
                     .WithOne(b => b.Cliente)
                      .HasForeignKey(fk => fk.ClienteId)
                       .OnDelete(DeleteBehavior.Cascade);
-
-            
         }
     }
 }

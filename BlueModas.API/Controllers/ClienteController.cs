@@ -56,7 +56,7 @@ namespace BlueModas.API.Controllers
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Cliente não encontrado.")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Verifique os parâmetros passados.")]
-        public async Task<IActionResult> Update(Guid id, Cliente cliente)
+        public async Task<IActionResult> Update(Guid id, [FromBody]Cliente cliente)
         {
             var retorno = this.clienteRepository.Update(id, cliente);
 

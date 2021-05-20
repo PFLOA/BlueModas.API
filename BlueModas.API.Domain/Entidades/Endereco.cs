@@ -30,12 +30,13 @@ namespace BlueModas.API.Domain.Entidades
             get { return _id; }
             set { _id = value; }
         }
-        public Guid ClienteId { get; set; }
         /// <summary>
         /// Id do Usuário.
         /// </summary>
+        public Guid ClienteId { get; set; }
+        
         [JsonIgnore]
-        public virtual Cliente Cliente
+        public Cliente Cliente
         {
             get { return _cliente; }
             set { _cliente = value; }

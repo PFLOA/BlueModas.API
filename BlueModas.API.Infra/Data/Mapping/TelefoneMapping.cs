@@ -13,7 +13,6 @@ namespace BlueModas.API.Infra.Data.Mapping
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Numero);
             builder.Property(p => p.TipoTelefone);
-            builder.HasOne(p => p.Cliente).WithMany(b => b.Telefones).HasForeignKey(p => p.ClienteId);
         }
     }
 }

@@ -1,4 +1,6 @@
 using BlueModas.API.Domain.Interface;
+using BlueModas.API.Filters.Users;
+using BlueModas.API.Filters.Vendas;
 using BlueModas.API.Infra.Data;
 using BlueModas.API.Infra.Mock;
 using BlueModas.API.Infra.Repository;
@@ -67,6 +69,8 @@ namespace BlueModas.API
                     Scheme = "Bearer"
                 });
 
+                c.SchemaFilter<VendasAddSchemaFilter>();
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -121,12 +125,15 @@ namespace BlueModas.API
             app.UseSwagger(c =>
             {
                 c.SerializeAsV2 = true;
+                
             });
+
 
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blue Modas API");
                 c.RoutePrefix = string.Empty;
+                c.EnableFilter();
             });
 
             app.UseHttpsRedirection();

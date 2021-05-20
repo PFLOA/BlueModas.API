@@ -1,4 +1,5 @@
 ﻿using BlueModas.API.Domain.Entidades;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,5 +10,6 @@ namespace BlueModas.API.Domain.Interface
     public interface IVendasRepository
     {
         Task<Venda> Add(Venda venda);
+        Task<ActionResult<IEnumerable<Venda>>> GetAll();
     }
 }

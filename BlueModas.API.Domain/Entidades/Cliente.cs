@@ -33,11 +33,11 @@ namespace BlueModas.API.Domain.Entidades
         /// <summary>
         /// Lista de telefones do usuário.
         /// </summary>
-        public virtual List<Telefone> Telefones { get; set; }
+        public virtual ICollection<Telefone> Telefones { get; set; }
         /// <summary>
         /// Lista de endereços do usuário.
         /// </summary>
-        public virtual List<Endereco> Enderecos { get; set; }
+        public virtual ICollection<Endereco> Enderecos { get; set; }
         #endregion
     }
 }

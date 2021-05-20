@@ -14,7 +14,7 @@ using BlueModas.API.Domain.Retorno;
 
 namespace BlueModas.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize]
     public class CategoriaController : ControllerBase
@@ -56,7 +56,7 @@ namespace BlueModas.API.Controllers
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Verifique os parâmetros passados.")]
-        public async Task<IActionResult> Update(int id, Categorias categorias)
+        public async Task<IActionResult> Update(int id, [FromBody]Categorias categorias)
         {
             var retorno = this.categoriaRepository.Update(id, categorias);
 
@@ -81,7 +81,7 @@ namespace BlueModas.API.Controllers
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Erro na criação do usuário.", typeof(FieldValidate))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro interno do servidor.", typeof(GeneralError))]
-        public async Task<ActionResult<Categorias>> Add(Categorias categorias)
+        public async Task<ActionResult<Categorias>> Add([FromBody]Categorias categorias)
         {
             var retorno = await this.categoriaRepository.Add(categorias);
             return CreatedAtAction("GetAll", new { id = retorno.Id }, retorno);

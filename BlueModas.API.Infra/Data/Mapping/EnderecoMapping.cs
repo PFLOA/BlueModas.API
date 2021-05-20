@@ -17,7 +17,6 @@ namespace BlueModas.API.Infra.Data.Mapping
             builder.Property(p => p.Cidade);
             builder.Property(p => p.Cep);
             builder.Property(p => p.Estado);
-            builder.HasOne(p => p.Cliente).WithMany(b => b.Enderecos).HasForeignKey(fk => fk.ClienteId);
         }
     }
 }

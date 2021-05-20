@@ -13,9 +13,8 @@ namespace BlueModas.API.Infra.Data.Mapping
         {
             builder.ToTable("TB_VENDA");
             builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id);
-            builder.HasOne(p => p.Cliente).WithMany().HasForeignKey(fk => fk.ClienteId);
-            builder.HasOne(p => p.Produto).WithMany().HasForeignKey(fk => fk.ProdutoId);
+            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+            builder.HasMany(p => p.Itens).WithOne(b => b.Venda).HasForeignKey(fk => fk.IdVenda);
         }
     }
 }

@@ -14,8 +14,11 @@ namespace BlueModas.API.Domain.Entidades
         #endregion
 
         #region [ Properties ]
+        /// <summary>
+        /// Id do Usuário.
+        /// </summary>
         [JsonIgnore]
-        public virtual Cliente Cliente
+        public Cliente Cliente
         {
             get { return _cliente; }
             set { _cliente = value; }

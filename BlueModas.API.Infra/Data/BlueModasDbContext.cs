@@ -36,6 +36,7 @@ namespace BlueModas.API.Infra.Data
             modelBuilder.ApplyConfiguration(new VendaMapping());
             modelBuilder.ApplyConfiguration(new TelefoneMapping());
             modelBuilder.ApplyConfiguration(new EnderecoMapping());
+            modelBuilder.ApplyConfiguration(new ItensMapping());
 
             base.OnModelCreating(modelBuilder);
         }

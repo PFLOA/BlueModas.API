@@ -14,42 +14,44 @@ namespace BlueModas.API.Infra.Repository
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        private readonly BlueModasDbContext applicationDbContext;
+        private readonly BlueModasDbContext blueModasDbContext;
 
-        public ProdutoRepository(BlueModasDbContext applicationDbContext)
+        public ProdutoRepository(BlueModasDbContext blueModasDbContext)
         {
-            this.applicationDbContext = applicationDbContext;
+            this.blueModasDbContext = blueModasDbContext;
         }
 
         #region [ Public Functions ]
-        public async Task<Produto> Add(Produto produto)
+        public async Task<Produto> Add([FromBody]Produto produto)
         {
-            await this.applicationDbContext.Produto.AddAsync(produto);
-            await this.applicationDbContext.SaveChangesAsync();
+            await this.blueModasDbContext.Produto.AddAsync(produto);
+            await this.blueModasDbContext.SaveChangesAsync();
 
             return produto;
         }
-        public async Task<Produto> Delete(Guid id)
+        public async Task<Produto> Delete(int id)
         {
-            var produto = await this.applicationDbContext.Produto.FindAsync(id);
+            var produto = await this.blueModasDbContext.Produto.FindAsync(id);
 
             if (produto == null)
             {
                 return null;
             }
 
-            this.applicationDbContext.Produto.Remove(produto);
-            await this.applicationDbContext.SaveChangesAsync();
+            this.blueModasDbContext.Produto.Remove(produto);
+            await this.blueModasDbContext.SaveChangesAsync();
 
             return produto;
         }
         public async Task<ActionResult<IEnumerable<Produto>>> GetAll()
         {
-            return await this.applicationDbContext.Produto.ToListAsync();
+            return await this.blueModasDbContext.Produto
+                    .Include(p=>p.Categoria)
+                    .ToListAsync();
         }
-        public async Task<Produto> GetById(Guid id)
+        public async Task<Produto> GetById(int id)
         {
-            var produto = await this.applicationDbContext.Produto.FindAsync(id);
+            var produto = await this.blueModasDbContext.Produto.FindAsync(id);
 
             if (produto == null)
             {
@@ -58,18 +60,18 @@ namespace BlueModas.API.Infra.Repository
 
             return produto;
         }
-        public RetornosEnum Update(Guid id, Produto produto)
+        public RetornosEnum Update(int id, [FromBody]Produto produto)
         {
             if (id != produto.Id)
             {
                 return RetornosEnum.UserDifferentId;
             }
 
-            this.applicationDbContext.Entry(produto).State = EntityState.Modified;
+            this.blueModasDbContext.Entry(produto).State = EntityState.Modified;
 
             try
             {
-                this.applicationDbContext.SaveChangesAsync();
+                this.blueModasDbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -88,9 +90,9 @@ namespace BlueModas.API.Infra.Repository
         #endregion
 
         #region [ Private Functions ]
-        private bool UsersExists(Guid id)
+        private bool UsersExists(int id)
         {
-            return this.applicationDbContext.Users.Any(e => e.Id == id);
+            return this.blueModasDbContext.Produto.Any(e => e.Id == id);
         }
         #endregion
     }
