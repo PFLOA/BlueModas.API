@@ -1,3 +1,4 @@
+using BlueModas.API.Domain.Filters;
 using BlueModas.API.Domain.Interface;
 using BlueModas.API.Filters.Users;
 using BlueModas.API.Filters.Vendas;
@@ -69,7 +70,7 @@ namespace BlueModas.API
                     Scheme = "Bearer"
                 });
 
-                c.SchemaFilter<VendasAddSchemaFilter>();
+                c.SchemaFilter<AddSchemaFilter>();
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {

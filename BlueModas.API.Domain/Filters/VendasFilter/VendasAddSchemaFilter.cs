@@ -4,8 +4,6 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlueModas.API.Filters.Vendas
 {
@@ -13,13 +11,6 @@ namespace BlueModas.API.Filters.Vendas
     {
         public void Apply(OpenApiSchema schema, SchemaFilterContext context)
         {
-                var listItens = new List<Itens>();
-                listItens.Add(new Itens
-                {
-                    IdProduto = 1,
-                    Quantidade = 12
-                });
-
                 schema.Example = GetExampleOrNullFor(context.Type);
         }
 

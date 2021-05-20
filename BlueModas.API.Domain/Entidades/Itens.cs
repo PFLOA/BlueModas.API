@@ -12,8 +12,9 @@ namespace BlueModas.API.Domain.Entidades
         public int IdProduto { get; set; }
         public int Quantidade { get; set; }
 
+        public virtual Produto Produto { get; set; }
+
         [JsonIgnore]
         public virtual Venda Venda { get; set; }
-        public virtual Produto Produto { get; set; }
     }
 }

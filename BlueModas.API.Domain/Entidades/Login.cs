@@ -1,10 +1,13 @@
-﻿using System;
+﻿using BlueModas.API.Domain.Filters;
+using Swashbuckle.Swagger.Annotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace BlueModas.API.Domain.Entidades
 {
+    [SwaggerSchemaFilter(typeof(AddSchemaFilter))]
     public class Login
     {
         public Guid Id { get; set; }

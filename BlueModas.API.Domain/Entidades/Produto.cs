@@ -1,10 +1,13 @@
-﻿using System;
+﻿using BlueModas.API.Domain.Filters;
+using Swashbuckle.Swagger.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace BlueModas.API.Domain.Entidades
 {
+    [SwaggerSchemaFilter(typeof(AddSchemaFilter))]
     public class Produto
     {
         #region [ Properties ]
