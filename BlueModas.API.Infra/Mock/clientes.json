@@ -1,0 +1,82 @@
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "userName": "paulo",
+    "password": "123",
+    "email": "paulo@email.com.br",
+    "name": "Paulo",
+    "dataCadastro": "2021-05-19T21:33:43.396Z",
+    "telefones": [
+      {
+        "numero": "1190000000",
+        "tipoTelefone": 2
+      }
+    ],
+    "enderecos": [
+      {
+        "rua": "Av Paulista",
+        "numero": "671",
+        "complemento": "Ap 1511",
+        "bairro": "Bela Vista",
+        "cep": "01311100",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "observacoes": "Sem",
+        "tipoEndereco": 1
+      }
+    ]
+  },
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c915f66afa6",
+    "userName": "karina",
+    "password": "123",
+    "email": "karina@email.com.br",
+    "name": "Karina",
+    "dataCadastro": "2021-05-19T21:33:43.396Z",
+    "telefones": [
+      {
+        "numero": "11900000000",
+        "tipoTelefone": 2
+      }
+    ],
+    "enderecos": [
+      {
+        "rua": "Av Paulista",
+        "numero": "671",
+        "complemento": "Ap 1511",
+        "bairro": "Bela Vista",
+        "cep": "01311100",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "observacoes": "Sem",
+        "tipoEndereco": 1
+      }
+    ]
+  },
+  {
+    "userName": "pedro",
+    "password": "123",
+    "email": "pedro@email.com.br",
+    "name": "Pedro",
+    "dataCadastro": "2021-05-19T21:33:43.396Z",
+    "telefones": [
+      {
+        "numero": "11900000000",
+        "tipoTelefone": 2
+      }
+    ],
+    "enderecos": [
+      {
+        "rua": "Av Paulista",
+        "numero": "671",
+        "complemento": "Ap 1511",
+        "bairro": "Bela Vista",
+        "cep": "01311100",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "observacoes": "Sem",
+        "tipoEndereco": 1
+      }
+    ]
+  }
+]

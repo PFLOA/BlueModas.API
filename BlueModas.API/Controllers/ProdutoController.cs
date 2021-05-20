@@ -1,29 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
-using Swashbuckle.AspNetCore.Annotations;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using BlueModas.API.Domain.Entidades;
-using BlueModas.API.Filters.Users;
-using BlueModas.API.Exceptions.Users;
-using BlueModas.API.Exceptions;
-using System;
+﻿using BlueModas.API.Domain.Entidades;
 using BlueModas.API.Domain.Interface;
 using BlueModas.API.Domain.Retorno;
+using BlueModas.API.Exceptions;
+using BlueModas.API.Exceptions.Users;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Annotations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BlueModas.API.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class UsersController : ControllerBase
+    public class ProdutoController : ControllerBase
     {
-        private readonly IUsersRepository usersRepository;
+        private readonly IProdutoRepository produtoRepository;
 
-        public UsersController(IUsersRepository usersRepository)
+        public ProdutoController(IProdutoRepository produtoRepository)
         {
-            this.usersRepository = usersRepository;
+            this.produtoRepository = produtoRepository;
         }
 
         /// <summary>
@@ -32,18 +32,17 @@ namespace BlueModas.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
-        public async Task<ActionResult<IEnumerable<Users>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Produto>>> GetAll()
         {
-            return await this.usersRepository.GetAll();
+            return await this.produtoRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-        [UserModelStateValidateFilter]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
-        public async Task<ActionResult<Users>> GetById(Guid id)
+        public async Task<ActionResult<Produto>> GetById(Guid id)
         {
-            var retorno = await this.usersRepository.GetById(id);
+            var retorno = await this.produtoRepository.GetById(id);
 
             if (retorno == null)
             {
@@ -57,9 +56,9 @@ namespace BlueModas.API.Controllers
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Verifique os parâmetros passados.")]
-        public async Task<IActionResult> Update(Guid id, Users users)
+        public async Task<IActionResult> Update(Guid id, Produto produto)
         {
-            var retorno = this.usersRepository.Update(id, users);
+            var retorno = this.produtoRepository.Update(id, produto);
 
             if (ReturnLogics.UserDifferentIdEnum(retorno))
             {
@@ -75,32 +74,31 @@ namespace BlueModas.API.Controllers
         }
 
         [HttpPost]
-        [SwaggerOperation(Summary = "Cria um usuário novo.",
-                          Description = "Cria um novo usuário para realizar login no banco de dados.",
-                          OperationId = "CreateUser")]
-        [UserModelStateValidateFilter]
-        [SwaggerResponse(StatusCodes.Status201Created, "Usuário criado.", typeof(Users))]
-        [SwaggerResponse(StatusCodes.Status400BadRequest, "Erro na criação do usuário.", typeof(FieldValidate))]
+        [SwaggerOperation(Summary = "Cria um produto novo.",
+                          Description = "Cria um novo produto para realizar vendas.",
+                          OperationId = "CreateProduct")]
+        [SwaggerResponse(StatusCodes.Status201Created, "Usuário criado.", typeof(Produto))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "Erro na criação do produto.", typeof(FieldValidate))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro interno do servidor.", typeof(GeneralError))]
-        public async Task<ActionResult<Users>> Add(Users users)
+        public async Task<ActionResult<Produto>> Add(Produto produto)
         {
-            var retorno = await this.usersRepository.Add(users);
+            var retorno = await this.produtoRepository.Add(produto);
             return CreatedAtAction("GetAll", new { id = retorno.Id }, retorno);
         }
 
         [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Deleta usuário.",
-                          Description = "Delete um usuario baseado no id.",
-                          OperationId = "DeleteUser")]
-        [SwaggerResponse(StatusCodes.Status201Created, "Usuário excluido.", typeof(Users))]
-        [SwaggerResponse(StatusCodes.Status400BadRequest, "Erro na exclusão do usuário.", typeof(FieldValidate))]
+        [SwaggerOperation(Summary = "Deleta poduto.",
+                          Description = "Delete um poduto baseado no id.",
+                          OperationId = "DeleteProduct")]
+        [SwaggerResponse(StatusCodes.Status201Created, "Produto excluido.", typeof(Produto))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "Erro na exclusão do produto.", typeof(FieldValidate))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro interno do servidor.", typeof(GeneralError))]
-        public async Task<ActionResult<Users>> Delete(Guid id)
+        public async Task<ActionResult<Produto>> Delete(Guid id)
         {
-            var retorno = await this.usersRepository.Delete(id);
+            var retorno = await this.produtoRepository.Delete(id);
 
             if (retorno == null)
             {

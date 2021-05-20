@@ -17,12 +17,12 @@ namespace BlueModas.API.Domain.Entidades
             get { return _id; }
             set { _id = value; }
         }
-
         public string Nome
         {
             get { return _nome; }
             set { _nome = value; }
-        } 
+        }
+        public List<Produto> Produtos { get; set; }
         #endregion
     }
 }

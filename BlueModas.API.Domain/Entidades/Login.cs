@@ -7,9 +7,23 @@ namespace BlueModas.API.Domain.Entidades
 {
     public class Login
     {
-        [Required]
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// UserName utilizado para gerar login na aplicação.
+        /// </summary>
+        [Required(ErrorMessage = "Campo UserName é obrigatório !")]
+        [DataType(DataType.Password)]
         public string UserName { get; set; }
-        [Required]
+
+        /// <summary>
+        /// Senha utilizada para gerar login na aplicação.
+        /// </summary>
+        [Required(ErrorMessage = "Campo Password é obrigatório !")]
         public string Password { get; set; }
+        /// <summary>
+        /// Email do usuário.
+        /// </summary>
+        public string Email { get; set; }
     }
 }

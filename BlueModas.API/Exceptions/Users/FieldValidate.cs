@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace BlueModas.API.Exceptions.Users
 {
-    public class UsersFieldValidate
+    public class FieldValidate
     {
         public IEnumerable<string> Errors { get; set; }
 
-        public UsersFieldValidate(IEnumerable<string> errors)
+        public FieldValidate(IEnumerable<string> errors)
         {
             this.Errors = errors;
         }

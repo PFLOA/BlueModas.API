@@ -1,5 +1,4 @@
-﻿using BlueModas.API.Domain;
-using BlueModas.API.Domain.Entidades;
+﻿using BlueModas.API.Domain.Entidades;
 using BlueModas.API.Domain.Enum;
 using BlueModas.API.Domain.Interface;
 using BlueModas.API.Infra.Data;
@@ -13,64 +12,60 @@ using System.Threading.Tasks;
 
 namespace BlueModas.API.Infra.Repository
 {
-    public class UsersRepository : IUsersRepository
+    public class ProdutoRepository : IProdutoRepository
     {
-        #region [ Attributes ]
         private readonly BlueModasDbContext applicationDbContext;
-        #endregion
 
-        #region [ Constructors ]
-        public UsersRepository(BlueModasDbContext applicationDbContext)
+        public ProdutoRepository(BlueModasDbContext applicationDbContext)
         {
             this.applicationDbContext = applicationDbContext;
         }
-        #endregion
 
         #region [ Public Functions ]
-        public async Task<Users> Add(Users users)
+        public async Task<Produto> Add(Produto produto)
         {
-            await this.applicationDbContext.Users.AddAsync(users);
+            await this.applicationDbContext.Produto.AddAsync(produto);
             await this.applicationDbContext.SaveChangesAsync();
 
-            return users;
+            return produto;
         }
-        public async Task<Users> Delete(Guid id)
+        public async Task<Produto> Delete(Guid id)
         {
-            var users = await this.applicationDbContext.Users.FindAsync(id);
+            var produto = await this.applicationDbContext.Produto.FindAsync(id);
 
-            if (users == null)
+            if (produto == null)
             {
                 return null;
             }
 
-            this.applicationDbContext.Users.Remove(users);
+            this.applicationDbContext.Produto.Remove(produto);
             await this.applicationDbContext.SaveChangesAsync();
 
-            return users;
+            return produto;
         }
-        public async Task<ActionResult<IEnumerable<Users>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Produto>>> GetAll()
         {
-            return await this.applicationDbContext.Users.ToListAsync();
+            return await this.applicationDbContext.Produto.ToListAsync();
         }
-        public async Task<Users> GetById(Guid id)
+        public async Task<Produto> GetById(Guid id)
         {
-            var users = await this.applicationDbContext.Users.FindAsync(id);
+            var produto = await this.applicationDbContext.Produto.FindAsync(id);
 
-            if (users == null)
+            if (produto == null)
             {
                 return null;
             }
 
-            return users;
+            return produto;
         }
-        public RetornosEnum Update(Guid id, Users users)
+        public RetornosEnum Update(Guid id, Produto produto)
         {
-            if (id != users.Id)
+            if (id != produto.Id)
             {
                 return RetornosEnum.UserDifferentId;
             }
 
-            this.applicationDbContext.Entry(users).State = EntityState.Modified;
+            this.applicationDbContext.Entry(produto).State = EntityState.Modified;
 
             try
             {
@@ -89,7 +84,7 @@ namespace BlueModas.API.Infra.Repository
             }
 
             return RetornosEnum.UserUpdated;
-        }
+        } 
         #endregion
 
         #region [ Private Functions ]

@@ -8,7 +8,7 @@ namespace BlueModas.API.Infra.Mock
 {
     public class UsersMockData
     {
-        public static void Add(ApplicationDbContext appicationDbContext)
+        public static void Add(BlueModasDbContext appicationDbContext)
         {
             appicationDbContext.Users.AddRange(UsersListMock());
             appicationDbContext.SaveChanges();
@@ -24,7 +24,10 @@ namespace BlueModas.API.Infra.Mock
                 Email = "user1@email.com",
                 Name = "Paulo",
                 Password = "123",
-                UserName = "paulo"
+                UserName = "paulo",
+                DataCadastro = DateTime.Now,
+                NivelAcesso = Domain.Enum.NivelAcesso.Administrador
+
             });
 
             listUsers.Add(new Users
@@ -33,7 +36,9 @@ namespace BlueModas.API.Infra.Mock
                 Email = "user2@email.com",
                 Name = "Pedro",
                 Password = "Mudar@123Senha",
-                UserName = "pedro"
+                UserName = "pedro",
+                DataCadastro = DateTime.Now,
+                NivelAcesso = Domain.Enum.NivelAcesso.Administrador
             });
 
             listUsers.Add(new Users
@@ -42,7 +47,9 @@ namespace BlueModas.API.Infra.Mock
                 Email = "user3@email.com",
                 Name = "Potira",
                 Password = "Mudar@123Senha",
-                UserName = "potira"
+                UserName = "potira",
+                DataCadastro = DateTime.Now,
+                NivelAcesso = Domain.Enum.NivelAcesso.Administrador
             });
 
             listUsers.Add(new Users
@@ -51,7 +58,9 @@ namespace BlueModas.API.Infra.Mock
                 Email = "user4@email.com",
                 Name = "Francisca",
                 Password = "Mudar@123Senha",
-                UserName = "francisca"
+                UserName = "francisca",
+                DataCadastro = DateTime.Now,
+                NivelAcesso = Domain.Enum.NivelAcesso.Administrador
             });
 
             listUsers.Add(new Users
@@ -60,7 +69,9 @@ namespace BlueModas.API.Infra.Mock
                 Email = "user5@email.com",
                 Name = "Camila",
                 Password = "Mudar@123Senha",
-                UserName = "camila"
+                UserName = "camila",
+                DataCadastro = DateTime.Now,
+                NivelAcesso = Domain.Enum.NivelAcesso.Administrador
             });
 
             return listUsers;

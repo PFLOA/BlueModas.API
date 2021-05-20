@@ -43,13 +43,18 @@ namespace BlueModas.API
                     options.SuppressModelStateInvalidFilter = true;
                 });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<BlueModasDbContext>(options =>
             {
                 options.UseInMemoryDatabase("BlueModasBd");
             });
 
-            services.AddTransient<IUsersRepository, UsersRepository>();
-            services.AddTransient<ILoginRepository, LoginRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IVendasRepository, VendasRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<ITelefoneRepository, TelefoneRepository>();
 
             services.AddSwaggerGen(c =>
             {
@@ -104,7 +109,7 @@ namespace BlueModas.API
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext applicationDbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlueModasDbContext applicationDbContext)
         {
             UsersMockData.Add(applicationDbContext);
 

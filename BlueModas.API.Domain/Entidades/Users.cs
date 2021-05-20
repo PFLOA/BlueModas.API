@@ -7,27 +7,15 @@ namespace BlueModas.API.Domain.Entidades
     /// <summary>
     /// Entidade de Usuário da aplicação.
     /// </summary>
-    public class Users
+    public class Users : Login
     {
         #region [ Attributes ]
-        private Guid _id;
         private string _name;
-        private string _userName;
-        private string _email;
-        private string _password;
         private DateTime _dataCadastro;
         private NivelAcesso _nivelAcesso;
         #endregion
 
         #region [ Properties ]
-        /// <summary>
-        /// Id do usuário.
-        /// </summary>
-        public Guid Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
         /// <summary>
         /// Nome completo do usuário.
         /// </summary>
@@ -36,33 +24,6 @@ namespace BlueModas.API.Domain.Entidades
         {
             get { return _name.ToUpper(); }
             set { _name = value; }
-        }
-        /// <summary>
-        /// UserName utilizado para gerar login na aplicação.
-        /// </summary>
-        [Required(ErrorMessage = "Campo UserName é obrigatório !")]
-        [DataType(DataType.Password)]
-        public string UserName
-        {
-            get { return _userName.ToUpper(); }
-            set { _userName = value; }
-        }
-        /// <summary>
-        /// Senha utilizada para gerar login na aplicação.
-        /// </summary>
-        [Required(ErrorMessage = "Campo Password é obrigatório !")]
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
-        }
-        /// <summary>
-        /// Email do usuário.
-        /// </summary>
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
         }
         /// <summary>
         /// Data de cadastro do usuário no sistema.
@@ -78,7 +39,6 @@ namespace BlueModas.API.Domain.Entidades
             get { return _nivelAcesso; }
             set { _nivelAcesso = value; }
         }
-
         #endregion
     }
 }

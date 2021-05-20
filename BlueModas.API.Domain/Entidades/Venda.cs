@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlueModas.API.Domain.Entidades
 {
-    class Venda
+    public class Venda
     {
         #region [ Attributes ]
         private int _id;
-        private List<ItenVenda> _itensVenda;
         private Cliente _cliente;
+        private Produto _produto;
         #endregion
 
         #region [ Properties ]
@@ -18,20 +16,18 @@ namespace BlueModas.API.Domain.Entidades
             get { return _id; }
             set { _id = value; }
         }
-
-
+        public Guid ClienteId { get; set; }
+        public Guid ProdutoId { get; set; }
         public Cliente Cliente
         {
             get { return _cliente; }
             set { _cliente = value; }
         }
-
-
-        public List<ItenVenda> ItensVenda
+        public Produto Produto
         {
-            get { return _itensVenda; }
-            set { _itensVenda = value; }
-        } 
+            get { return _produto; }
+            set { _produto = value; }
+        }
         #endregion
     }
 }

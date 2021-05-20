@@ -1,5 +1,7 @@
 ﻿using BlueModas.API.Domain.Enum;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BlueModas.API.Domain.Entidades
 {
@@ -7,7 +9,7 @@ namespace BlueModas.API.Domain.Entidades
     {
         #region [ Attributes ]
         private int _id;
-        private Users _users;
+        private Cliente _cliente;
         private string _rua;
         private string _numero;
         private string _complemento;
@@ -28,13 +30,15 @@ namespace BlueModas.API.Domain.Entidades
             get { return _id; }
             set { _id = value; }
         }
+        public Guid ClienteId { get; set; }
         /// <summary>
         /// Id do Usuário.
         /// </summary>
-        public Users Users
+        [JsonIgnore]
+        public virtual Cliente Cliente
         {
-            get { return _users; }
-            set { _users = value; }
+            get { return _cliente; }
+            set { _cliente = value; }
         }
         /// <summary>
         /// Rua sem o numero.

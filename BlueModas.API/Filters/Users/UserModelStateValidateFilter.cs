@@ -11,7 +11,7 @@ namespace BlueModas.API.Filters.Users
         {
             if (!context.ModelState.IsValid)
             {
-                var usersFieldValidate = new UsersFieldValidate(context.ModelState.SelectMany(sm => sm.Value.Errors).Select(s => s.ErrorMessage));
+                var usersFieldValidate = new FieldValidate(context.ModelState.SelectMany(sm => sm.Value.Errors).Select(s => s.ErrorMessage));
                 context.Result = new BadRequestObjectResult(usersFieldValidate);
             }
         }

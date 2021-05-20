@@ -1,4 +1,6 @@
 ﻿using BlueModas.API.Domain.Enum;
+using System;
+using System.Text.Json.Serialization;
 
 namespace BlueModas.API.Domain.Entidades
 {
@@ -7,11 +9,17 @@ namespace BlueModas.API.Domain.Entidades
         #region [ Attributes ]
         private int _id;
         private TipoTelefone _tipoTelefone;
-        private Users _users;
-        private string _numero; 
+        private Cliente _cliente;
+        private string _numero;
         #endregion
 
         #region [ Properties ]
+        [JsonIgnore]
+        public virtual Cliente Cliente
+        {
+            get { return _cliente; }
+            set { _cliente = value; }
+        }
         /// <summary>
         /// Id do telefone.
         /// </summary>
@@ -20,19 +28,12 @@ namespace BlueModas.API.Domain.Entidades
             get { return _id; }
             set { _id = value; }
         }
-
-        public Users Users
-        {
-            get { return _users; }
-            set { _users = value; }
-        }
-
+        public Guid ClienteId { get; set; }
         public string Numero
         {
             get { return _numero; }
             set { _numero = value; }
         }
-
         public TipoTelefone TipoTelefone
         {
             get { return _tipoTelefone; }

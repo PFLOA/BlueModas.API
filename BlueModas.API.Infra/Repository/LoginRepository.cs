@@ -14,13 +14,29 @@ namespace BlueModas.API.Infra.Repository
 {
     public class LoginRepository : ILoginRepository
     {
-        private readonly ApplicationDbContext applicationDbContext;
+        private readonly BlueModasDbContext applicationDbContext;
 
-        public LoginRepository(ApplicationDbContext applicationDbContext)
+        public LoginRepository(BlueModasDbContext applicationDbContext)
         {
             this.applicationDbContext = applicationDbContext;
         }
 
+        public async Task<Cliente> LoginCliente(Login login)
+        {
+            if (login == null)
+            {
+                return null;
+            }
+
+            var retorno = this.applicationDbContext.Cliente.ToList().First(e => e.UserName == login.UserName.ToUpper() && e.Password == login.Password);
+
+            if (retorno == null)
+            {
+                return null;
+            }
+
+            return retorno;
+        }
         public async Task<Users> LoginUser(Login login)
         {
             if (login == null)
@@ -28,14 +44,15 @@ namespace BlueModas.API.Infra.Repository
                 return null;
             }
 
-            var retorno = this.applicationDbContext.Users.ToList().First(e => e.UserName == login.UserName.ToUpper() && e.Password == login.Password);
-           
-            if (retorno == null)
+            var list = this.applicationDbContext.Users.ToList();
+
+            if (list.Count > 0)
             {
-                return null;
+                var retorno = list.First(e => e.UserName == login.UserName && e.Password == login.Password);
+                return retorno;
             }
 
-            return retorno;
+            return null;
         }
     }
 }

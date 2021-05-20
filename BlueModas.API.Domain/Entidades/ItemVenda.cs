@@ -4,15 +4,22 @@ using System.Text;
 
 namespace BlueModas.API.Domain.Entidades
 {
-    public class ItenVenda
+    public class ItemVenda
     {
         #region [ Attributes ]
+        private int _id;
         private int _produtoId;
         private int _quantidade;
-        private Produto produtos; 
+        private Produto produtos;
         #endregion
 
         #region [ Properties ]
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
         /// <summary>
         /// Id do Produto.
         /// </summary>

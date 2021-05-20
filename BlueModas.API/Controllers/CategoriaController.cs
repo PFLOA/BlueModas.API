@@ -1,29 +1,29 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Swashbuckle.AspNetCore.Annotations;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using BlueModas.API.Domain.Entidades;
-using BlueModas.API.Filters.Users;
-using BlueModas.API.Exceptions.Users;
-using BlueModas.API.Exceptions;
-using System;
-using BlueModas.API.Domain.Interface;
-using BlueModas.API.Domain.Retorno;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BlueModas.API.Domain.Interface;
+using Swashbuckle.AspNetCore.Annotations;
+using BlueModas.API.Domain.Entidades;
+using BlueModas.API.Exceptions.Users;
+using BlueModas.API.Exceptions;
+using BlueModas.API.Domain.Retorno;
 
 namespace BlueModas.API.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class UsersController : ControllerBase
+    public class CategoriaController : ControllerBase
     {
-        private readonly IUsersRepository usersRepository;
+        private readonly ICategoriaRepository categoriaRepository;
 
-        public UsersController(IUsersRepository usersRepository)
+        public CategoriaController(ICategoriaRepository categoriaRepository)
         {
-            this.usersRepository = usersRepository;
+            this.categoriaRepository = categoriaRepository;
         }
 
         /// <summary>
@@ -32,18 +32,17 @@ namespace BlueModas.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
-        public async Task<ActionResult<IEnumerable<Users>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Categorias>>> GetAll()
         {
-            return await this.usersRepository.GetAll();
+            return await this.categoriaRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-        [UserModelStateValidateFilter]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
-        public async Task<ActionResult<Users>> GetById(Guid id)
+        public async Task<ActionResult<Categorias>> GetById(int id)
         {
-            var retorno = await this.usersRepository.GetById(id);
+            var retorno = await this.categoriaRepository.GetById(id);
 
             if (retorno == null)
             {
@@ -57,9 +56,9 @@ namespace BlueModas.API.Controllers
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Verifique os parâmetros passados.")]
-        public async Task<IActionResult> Update(Guid id, Users users)
+        public async Task<IActionResult> Update(int id, Categorias categorias)
         {
-            var retorno = this.usersRepository.Update(id, users);
+            var retorno = this.categoriaRepository.Update(id, categorias);
 
             if (ReturnLogics.UserDifferentIdEnum(retorno))
             {
@@ -78,14 +77,13 @@ namespace BlueModas.API.Controllers
         [SwaggerOperation(Summary = "Cria um usuário novo.",
                           Description = "Cria um novo usuário para realizar login no banco de dados.",
                           OperationId = "CreateUser")]
-        [UserModelStateValidateFilter]
-        [SwaggerResponse(StatusCodes.Status201Created, "Usuário criado.", typeof(Users))]
+        [SwaggerResponse(StatusCodes.Status201Created, "Usuário criado.", typeof(Categorias))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Erro na criação do usuário.", typeof(FieldValidate))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro interno do servidor.", typeof(GeneralError))]
-        public async Task<ActionResult<Users>> Add(Users users)
+        public async Task<ActionResult<Categorias>> Add(Categorias categorias)
         {
-            var retorno = await this.usersRepository.Add(users);
+            var retorno = await this.categoriaRepository.Add(categorias);
             return CreatedAtAction("GetAll", new { id = retorno.Id }, retorno);
         }
 
@@ -93,14 +91,14 @@ namespace BlueModas.API.Controllers
         [SwaggerOperation(Summary = "Deleta usuário.",
                           Description = "Delete um usuario baseado no id.",
                           OperationId = "DeleteUser")]
-        [SwaggerResponse(StatusCodes.Status201Created, "Usuário excluido.", typeof(Users))]
+        [SwaggerResponse(StatusCodes.Status201Created, "Usuário excluido.", typeof(Categorias))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Erro na exclusão do usuário.", typeof(FieldValidate))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro interno do servidor.", typeof(GeneralError))]
-        public async Task<ActionResult<Users>> Delete(Guid id)
+        public async Task<ActionResult<Categorias>> Delete(int id)
         {
-            var retorno = await this.usersRepository.Delete(id);
+            var retorno = await this.categoriaRepository.Delete(id);
 
             if (retorno == null)
             {
