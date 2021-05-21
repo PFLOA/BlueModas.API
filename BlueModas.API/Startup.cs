@@ -40,6 +40,12 @@ namespace BlueModas.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
+
+
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options =>
                 {
@@ -116,7 +122,13 @@ namespace BlueModas.API
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlueModasDbContext applicationDbContext)
         {
-            UsersMockData.Add(applicationDbContext);
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials());
+
+            MockData.Add(applicationDbContext);
 
             if (env.IsDevelopment())
             {

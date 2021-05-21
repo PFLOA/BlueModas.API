@@ -7,6 +7,6 @@ namespace BlueModas.API.Domain.Entidades
     public class ResponseLogin
     {
         public string Token { get; set; }
-        public Users User { get; set; }
+        public Login Login { get; set; }
     }
 }

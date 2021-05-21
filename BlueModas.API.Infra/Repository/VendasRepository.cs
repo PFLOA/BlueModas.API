@@ -34,10 +34,21 @@ namespace BlueModas.API.Infra.Repository
                         .ThenInclude(b => b.Enderecos)
                        .Include(p => p.Itens)
                         .ThenInclude(b => b.Produto)
-                         .ThenInclude(c=>c.Categoria)
                        .Include(p => p.Cliente)
                         .ThenInclude(b => b.Telefones)
                        .ToListAsync();
+        }
+
+        public async Task<Venda> GetById(int id)
+        {
+            var venda = await this.blueModasDbContext.Venda.FindAsync(id);
+
+            if (venda == null)
+            {
+                return null;
+            }
+
+            return venda;
         }
     }
 }

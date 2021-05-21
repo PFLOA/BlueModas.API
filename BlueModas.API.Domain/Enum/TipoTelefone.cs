@@ -2,5 +2,8 @@
 {
     public enum TipoTelefone
     {
+        Celular,
+        Residêncial,
+        Comercial
     }
 }

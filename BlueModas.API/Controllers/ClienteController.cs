@@ -11,12 +11,12 @@ using BlueModas.API.Domain.Entidades;
 using BlueModas.API.Exceptions.Users;
 using BlueModas.API.Exceptions;
 using BlueModas.API.Domain.Retorno;
+using Microsoft.AspNetCore.Cors;
 
 namespace BlueModas.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
     public class ClienteController : ControllerBase
     {
         private readonly IClienteRepository clienteRepository;
@@ -74,7 +74,6 @@ namespace BlueModas.API.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [SwaggerOperation(Summary = "Cria um cliente novo.",
                           Description = "Cria um novo cliente para realizar login no banco de dados.",
                           OperationId = "CreateCliente")]

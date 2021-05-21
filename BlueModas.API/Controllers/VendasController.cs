@@ -14,7 +14,6 @@ namespace BlueModas.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
     public class VendasController : Controller
     {
         private readonly IVendasRepository vendasRepository;
@@ -48,6 +47,21 @@ namespace BlueModas.API.Controllers
         public async Task<ActionResult<IEnumerable<Venda>>> GetAll()
         {
             return await this.vendasRepository.GetAll();
+        }
+
+        [HttpGet("{id}")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
+        [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
+        public async Task<ActionResult<Venda>> GetById(int id)
+        {
+            var retorno = await this.vendasRepository.GetById(id);
+
+            if (retorno == null)
+            {
+                return NotFound();
+            }
+
+            return retorno;
         }
     }
 }

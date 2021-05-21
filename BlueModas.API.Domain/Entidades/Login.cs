@@ -15,14 +15,12 @@ namespace BlueModas.API.Domain.Entidades
         /// <summary>
         /// UserName utilizado para gerar login na aplicação.
         /// </summary>
-        [Required(ErrorMessage = "Campo UserName é obrigatório !")]
         [DataType(DataType.Password)]
         public string UserName { get; set; }
 
         /// <summary>
         /// Senha utilizada para gerar login na aplicação.
         /// </summary>
-        [Required(ErrorMessage = "Campo Password é obrigatório !")]
         public string Password { get; set; }
         /// <summary>
         /// Email do usuário.

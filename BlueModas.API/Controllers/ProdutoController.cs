@@ -31,6 +31,7 @@ namespace BlueModas.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [AllowAnonymous]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         public async Task<ActionResult<IEnumerable<Produto>>> GetAll()
         {
@@ -38,6 +39,7 @@ namespace BlueModas.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, "Não Autorizado.")]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Usuário não encontrado.")]
         public async Task<ActionResult<Produto>> GetById(int id)

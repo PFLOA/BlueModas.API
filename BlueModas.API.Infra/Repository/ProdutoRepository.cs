@@ -46,7 +46,6 @@ namespace BlueModas.API.Infra.Repository
         public async Task<ActionResult<IEnumerable<Produto>>> GetAll()
         {
             return await this.blueModasDbContext.Produto
-                    .Include(p=>p.Categoria)
                     .ToListAsync();
         }
         public async Task<Produto> GetById(int id)

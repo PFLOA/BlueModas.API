@@ -17,15 +17,8 @@ namespace BlueModas.API.Domain.Entidades
         public Cliente Cliente { get; set; }
         public int Id { get; set; }
         public Guid ClienteId { get; set; }
-        public decimal TotalVenda
-        {
-            get
-            {
-                var total = Itens.Sum(p => p.Quantidade * p.Produto.Preco);
-                return total;
-            }
-        }
-        public virtual List<Itens> Itens { get; set; }
+        public decimal TotalVenda { get; set; }
+        public List<Itens> Itens { get; set; }
         #endregion
     }
 }

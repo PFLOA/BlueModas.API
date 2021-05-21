@@ -1,0 +1,56 @@
+﻿[
+  {
+
+    "name": "PAULO",
+    "userName": "PAULO",
+    "password": "123",
+    "email": "user1@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": null,
+    "enderecos": null
+  },
+  {
+    "name": "PEDRO",
+    "userName": "PEDRO",
+    "password": "Mudar@123Senha",
+    "email": "user2@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": [
+    ],
+    "enderecos": [
+    ]
+  },
+  {
+    "name": "POTIRA",
+    "userName": "POTIRA",
+    "password": "Mudar@123Senha",
+    "email": "user3@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": [
+    ],
+    "enderecos": [
+    ]
+  },
+  {
+    "name": "FRANCISCA",
+    "userName": "FRANCISCA",
+    "password": "Mudar@123Senha",
+    "email": "user4@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": [
+    ],
+    "enderecos": [
+    ]
+  },
+  {
+    "name": "CAMILA",
+    "userName": "CAMILA",
+    "password": "Mudar@123Senha",
+    "email": "user5@email.com",
+    "dataCadastro": "0001-01-01T00:00:00",
+    "telefones": [
+    ],
+    "enderecos": [
+    ]
+  }
+]
